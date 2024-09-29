@@ -76,7 +76,7 @@ class CoinChangeInventoryTest {
         when(coinChangeRepo.getAvailableCoins()).thenReturn(mockedInventory);
 
         // Call the updateInventory method and use all remaining coins
-        assertThrows(CoinChangeException.class, () -> coinChangeInventory.updateInventory(0.25, 5));
+        assertThrows(CoinChangeException.class, () -> coinChangeInventory.updateInventory(0.25, 6));
     }
 
     @Test
@@ -85,7 +85,6 @@ class CoinChangeInventoryTest {
         Map<Double, Integer> mockedInventory = new HashMap<>();
         mockedInventory.put(0.25, 3);  // Only 3 coins of 0.25
         when(coinChangeRepo.getAvailableCoins()).thenReturn(mockedInventory);
-        when(coinChangeJpaRepository.findByDenomination(any())).thenReturn(new Coin(1l, 0.25, 3));
         // Call the updateInventory method with more coins than available
         assertThrows(CoinChangeException.class, () -> coinChangeInventory.updateInventory(0.25, 5));
 

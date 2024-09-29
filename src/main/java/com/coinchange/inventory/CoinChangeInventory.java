@@ -19,7 +19,7 @@ public class CoinChangeInventory {
     // Update the inventory after a transaction
     public void updateInventory(final double coin, final int coinsUsed) {
         final Map<Double, Integer> coinInventory = coinChangeRepo.getAvailableCoins();
-        if((coinInventory.get(coin) - coinsUsed) <= 0){
+        if((coinInventory.get(coin) - coinsUsed) < 0){
             throw new CoinChangeException("Not enough coins to make exact change.");
         }
         coinChangeRepo.updateCoins(Map.of(coin, coinInventory.get(coin) - coinsUsed));
