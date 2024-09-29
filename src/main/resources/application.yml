@@ -1,0 +1,23 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: coin-change-service
+
+  datasource:
+    url: jdbc:h2:mem:change_service
+    driver-class-name: org.h2.Driver
+    initialization-mode: always
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    defer-datasource-initialization: true
+
+
